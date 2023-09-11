@@ -1,87 +1,85 @@
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-  <button @click="store.$state.likes +=1">Likes = {{store.likes}}</button>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <body>
+  <div class="page">
+    <main class="main">
+      <div class="container">
+        <div class="laptop">
+          <div class="sections">
+            <section class="section section-left">
+              <div class="info">
+                <div class="city-inner">
+                  <input type="text" class="search">
+                </div>
+          <WeatherSummary/>
+              </div>
+            </section>
+            <section class="section section-right">
+             <Highlights/>
+            </section>
+          </div>
+          <div class="sections">
+            <section class="section-bottom">
+              <div
+                  class="block-bottom"
+              >
+                <div class="block-bottom-inner">
+                  <div class="block-bottom-pic pic-coords"></div>
+                  <div class="block-bottom-texts">
+                    <div class="block-bottom-text-block">
+                      <div class="block-bottom-text-block-title">
+                        Longitude: 2.3488
+                      </div>
+                      <div class="block-bottom-text-block-desc">
+                        Longitude measures distance east or west of the prime meridian.
+                      </div>
+                    </div>
+                    <div class="block-bottom-text-block">
+                      <div class="block-bottom-text-block-title">
+                        Latitude: 48.8534
+                      </div>
+                      <div class="block-bottom-text-block-desc">
+                        Latitude lines start at the equator (0 degrees latitude) and run east and west, parallel to the
+                        equator.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="section-bottom">
+              <div
+                  class="block-bottom"
+              >
+                <div class="block-bottom-inner">
+                  <div class="block-bottom-pic pic-humidity"></div>
+                  <div class="block-bottom-texts">
+                    <div class="block-bottom-text-block">
+                      <div class="block-bottom-text-block-title">
+                        Humidity: 60 %
+                      </div>
+                      <div class="block-bottom-text-block-desc">
+                        Humidity is the concentration of water vapor present in the air. Water vapor, the gaseous state
+                        of water, is generally invisible to the human eye.
+                        <br/><br/>
+                        The same amount of water vapor results in higher relative humidity in cool air than warm air.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  </body>
 </template>
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import {productsStore} from "@/store/store";
-const store = productsStore()
+import '@/assets/styles/app.scss'
+import WeatherSummary from "@/components/WeatherSummary.vue";
+import Highlights from "@/components/Highlights.vue";
 </script>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
+<style scoped >
 </style>

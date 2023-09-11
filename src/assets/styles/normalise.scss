@@ -1,3 +1,4 @@
+@import "variables";
 * {
   box-sizing: border-box;
   font-size: 16px
@@ -36,7 +37,7 @@ a {
   height: 100%;
   margin-left: 10px;
   padding: 28px 16px 16px;
-  background: url('/src/assets/img/gradient-1.jpg') no-repeat 0% 0%;
+  background: url('/src/assets/img/gradient-1.jpg') no-repeat 0 0;
   background-size: cover;
   border-radius: 25px;
 
@@ -91,7 +92,7 @@ a {
 
 
 .pic-humidity {
-  background-image: url ('/src/assets/img/humidity.png')
+  background-image: url('@/assets/img/humidity.png')
 }
 
 
