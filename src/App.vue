@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
 
 <template>
   <header>
@@ -9,7 +5,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-
+  <button @click="store.$state.likes +=1">Likes = {{store.likes}}</button>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
@@ -19,6 +15,12 @@ import HelloWorld from './components/HelloWorld.vue'
 
   <RouterView />
 </template>
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
+import {productsStore} from "@/store/store";
+const store = productsStore()
+</script>
 
 <style scoped>
 header {
