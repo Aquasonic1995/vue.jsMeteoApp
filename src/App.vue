@@ -8,7 +8,7 @@
             <section class="section section-left">
               <div class="info">
                 <div class="city-inner">
-                  <input type="text" class="search" v-model="city" @keyup.enter="fetchWeather" placeholder="Enter a valid city...">
+                  <input type="text" class="search" v-model="city" @keyup.enter="fetchWeather" placeholder="Enter a city...">
                 </div>
                 <WeatherSummary :weatherInfo="weatherInfo"  :city="city"/>
               </div>
