@@ -2,35 +2,48 @@
 import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: "WeatherSummary"
+  name: "WeatherSummary",
 })
 </script>
 
 <template>
-  <div class="summary">
+  <div v-if="weatherInfo?.weather" class="summary">
     <div
-        style="background-image: url('@/assets/img/weather-main/thunderstorm.png');"
+        :style="`background-image: url('src/assets/img/weather-main/${weatherInfo?.weather[0].description}.png')`"
         class="pic-main"
     ></div>
     <div class="weather">
       <div class="temp">
-        14 °C
+        {{Math.round(weatherInfo?.main.temp)}} °C
       </div>
       <div class="weather-desc text-block">
-        Thunderstorm
+        {{weatherInfo?.weather[0].main }}
       </div>
     </div>
     <div class="city text-block">
-      Paris,
-      FR
+      {{city}},
+      {{weatherInfo?.sys.country}}
     </div>
     <div class="date text-block">
-      Thu, March 16, 2023
+      {{ today }}
     </div>
   </div>
+  <div v-else style="margin-top:20px;font-size: 20px;">Oops<br>Something went wrong</div>
 </template>
-<script setup>
+<script setup lang="ts">
 
+const props = defineProps({
+  weatherInfo:{
+    type:[Object, null],
+    required:true
+  },
+  city:{
+    type:String,
+    required:true
+  }
+})
+const today = new Date().toLocaleString('en-En',{weekday:"short", year:"numeric", month:"long", day:"numeric"})
+console.log(props.city)
 </script>
 <style scoped>
 .pic-main {

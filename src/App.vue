@@ -8,13 +8,14 @@
             <section class="section section-left">
               <div class="info">
                 <div class="city-inner">
-                  <input type="text" class="search">
+                  <input type="text" class="search" v-model="city" @keyup.enter="fetchWeather" >
+
                 </div>
-          <WeatherSummary/>
+                <WeatherSummary :weatherInfo="weatherInfo" :city="city"/>
               </div>
             </section>
             <section class="section section-right">
-             <Highlights/>
+              <Highlights/>
             </section>
           </div>
           <div class="sections">
@@ -79,7 +80,19 @@
 import '@/assets/styles/app.scss'
 import WeatherSummary from "@/components/WeatherSummary.vue";
 import Highlights from "@/components/Highlights.vue";
+import {onMounted, ref} from "vue";
+
+const fetchWeather = () => {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=fe2da118f14ae05bbd5e331700e08b20`)
+      .then(response => response.json())
+      .then(data => weatherInfo.value = data)
+
+
+}
+const city = ref('Paris')
+const weatherInfo = ref(null)
+onMounted(fetchWeather)
 </script>
 
-<style scoped >
+<style scoped>
 </style>
