@@ -8,19 +8,18 @@
             <section class="section section-left">
               <div class="info">
                 <div class="city-inner">
-                  <input type="text" class="search" v-model="city" @keyup.enter="fetchWeather">
-
+                  <input type="text" class="search" v-model="city" @keyup.enter="fetchWeather" placeholder="Enter a city...">
                 </div>
-                <WeatherSummary :weatherInfo="weatherInfo" :city="city"/>
+                <WeatherSummary :weatherInfo="weatherInfo"  :city="city"/>
               </div>
             </section>
             <section class="section section-right">
-              <Highlights/>
+              <Highlights />
             </section>
           </div>
-          <div class="sections">
-            <Coords/>
-            <Humidity/>
+          <div class="sections" v-if="weatherInfo?.weather">
+            <Coords :coord="weatherInfo.coord"/>
+            <Humidity :humidity="weatherInfo.main.humidity"/>
           </div>
         </div>
       </div>
@@ -41,10 +40,9 @@ const fetchWeather = () => {
       .then(response => response.json())
       .then(data => weatherInfo.value = data)
 
-
 }
 const city = ref('Paris')
-const weatherInfo = ref(null)
+const weatherInfo = ref(null )
 onMounted(fetchWeather)
 </script>
 

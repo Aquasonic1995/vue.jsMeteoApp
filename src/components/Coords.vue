@@ -1,10 +1,4 @@
-<script lang="ts">
-import {defineComponent} from 'vue'
 
-export default defineComponent({
-  name: "Coords"
-})
-</script>
 
 <template>
   <section class="section-bottom">
@@ -16,7 +10,7 @@ export default defineComponent({
         <div class="block-bottom-texts">
           <div class="block-bottom-text-block">
             <div class="block-bottom-text-block-title">
-              Longitude: 2.3488
+              Longitude: {{coord.lon}}
             </div>
             <div class="block-bottom-text-block-desc">
               Longitude measures distance east or west of the prime meridian.
@@ -24,7 +18,7 @@ export default defineComponent({
           </div>
           <div class="block-bottom-text-block">
             <div class="block-bottom-text-block-title">
-              Latitude: 48.8534
+              Latitude: {{coord.lat}}
             </div>
             <div class="block-bottom-text-block-desc">
               Latitude lines start at the equator (0 degrees latitude) and run east and west, parallel to the
@@ -36,7 +30,14 @@ export default defineComponent({
     </div>
   </section>
 </template>
-
+<script setup>
+const props = defineProps({
+coord:{
+  type:[Object],
+  required:true
+}})
+console.log(props.coord)
+</script>
 <style scoped>
 
 </style>

@@ -1,10 +1,4 @@
-<script lang="ts">
-import {defineComponent} from 'vue'
 
-export default defineComponent({
-  name: "WeatherSummary",
-})
-</script>
 
 <template>
   <div v-if="weatherInfo?.weather" class="summary">
@@ -21,7 +15,7 @@ export default defineComponent({
       </div>
     </div>
     <div class="city text-block">
-      {{city}},
+      {{weatherInfo?.name}},
       {{weatherInfo?.sys.country}}
     </div>
     <div class="date text-block">
@@ -37,13 +31,9 @@ const props = defineProps({
     type:[Object, null],
     required:true
   },
-  city:{
-    type:String,
-    required:true
-  }
 })
 const today = new Date().toLocaleString('en-En',{weekday:"short", year:"numeric", month:"long", day:"numeric"})
-console.log(props.city)
+
 </script>
 <style scoped>
 .pic-main {

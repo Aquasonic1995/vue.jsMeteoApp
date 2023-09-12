@@ -1,6 +1,4 @@
-<script setup lang="ts">
 
-</script>
 
 <template>
   <section class="section-bottom">
@@ -12,7 +10,7 @@
         <div class="block-bottom-texts">
           <div class="block-bottom-text-block">
             <div class="block-bottom-text-block-title">
-              Humidity: 60 %
+              Humidity: {{humidity}} %
             </div>
             <div class="block-bottom-text-block-desc">
               Humidity is the concentration of water vapor present in the air. Water vapor, the gaseous state
@@ -26,7 +24,13 @@
     </div>
   </section>
 </template>
-
+<script setup lang="ts">
+const props = defineProps({
+  humidity:{
+    type:[Number],
+    required:true
+  }})
+</script>
 <style scoped>
 
 </style>
