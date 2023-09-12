@@ -41,8 +41,10 @@ const fetchWeather = () => {
       .then(data => weatherInfo.value = data)
 
 }
+
+export type weatherInfoType = any
 const city = ref('Paris')
-const weatherInfo = ref(null )
+const weatherInfo: weatherInfoType = ref(null)
 onMounted(fetchWeather)
 </script>
 

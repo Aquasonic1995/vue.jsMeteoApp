@@ -153,7 +153,7 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
+<script setup lang="js">
 import '@/assets/styles/highlights.scss'
 import {computed} from "vue";
 const props = defineProps({
@@ -163,11 +163,7 @@ const props = defineProps({
   },
 })
 const timezone = computed(()=>props.weatherInfo?.timezone)
-console.log(timezone.value)
-const getTime =(sec:number)=> new Date(sec*1000).toLocaleTimeString('ru-RU',{timeZone:'Atlantic/Reykjavik'})
+const getTime =(sec)=> new Date(sec*1000).toLocaleTimeString('ru-RU',{timeZone:'Atlantic/Reykjavik'})
 const sunriseTime = computed(()=> getTime(props.weatherInfo?.sys.sunrise+timezone.value))
 const sunsetTime = computed(()=> getTime(props.weatherInfo?.sys.sunset+timezone.value))
 </script>
-<style scoped>
-
-</style>

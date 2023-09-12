@@ -3,7 +3,7 @@
 <template>
   <div v-if="weatherInfo?.weather" class="summary">
     <div
-        :style="`background-image: url('/weather-main/${weatherInfo?.weather[0].description}.png')`"
+        :style="`background-image: url('./weather-main/${weatherInfo?.weather[0].description}.png')`"
         class="pic-main"
     ></div>
     <div class="weather">
@@ -23,9 +23,9 @@
     </div>
   </div>
   <div v-else style="margin-top:20px; margin-left: 10px; font-size: 20px;">
-    Oops! Something went wrong <br> <span style="color:red"> {{weatherInfo.message}}</span> </div>
+    Oops! Something went wrong <br> <span style="color:red"> {{weatherInfo?.message}}</span> </div>
 </template>
-<script setup lang="ts">
+<script setup lang="js">
 
 const props = defineProps({
   weatherInfo:{

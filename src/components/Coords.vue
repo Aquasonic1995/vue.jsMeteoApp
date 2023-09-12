@@ -30,13 +30,12 @@
     </div>
   </section>
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
 coord:{
   type:[Object],
   required:true
 }})
-console.log(props.coord)
 </script>
 <style scoped>
 
