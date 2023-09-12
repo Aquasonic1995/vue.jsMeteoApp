@@ -41,6 +41,7 @@ a {
   background-size: cover;
   border-radius: 25px;
 
+
   &-inner {
     display: flex;
     align-items: center;
@@ -99,5 +100,10 @@ a {
 .pic-coords {
   background-image: url('/src/assets/img/compass.png')
 
+}
+.section-bottom:nth-child(1){
+  & .block-bottom{
+    margin-left: 0;
+  }
 }
 

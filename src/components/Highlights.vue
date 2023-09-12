@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import '@/assets/styles/highlights.scss'
-</script>
+
 
 <template>
-  <div class="section highlights">
+  <div class="section highlights" v-if="weatherInfo?.weather">
     <div class="title">
       Today's Highlights
     </div>
@@ -18,7 +16,7 @@ import '@/assets/styles/highlights.scss'
             <div class="card-justify">
               <div class="info-main">
                 <div class="info-main-num">
-                  3.6
+                  {{weatherInfo.wind.speed}}
                 </div>
                 <div class="info-main-text">
                   m/s
@@ -26,7 +24,7 @@ import '@/assets/styles/highlights.scss'
               </div>
               <div class="info-main">
                 <div class="info-main-num">
-                  350
+                  {{weatherInfo.wind.deg}}
                 </div>
                 <div class="info-main-text">
                   deg
@@ -40,9 +38,9 @@ import '@/assets/styles/highlights.scss'
             Wind gusts
           </div>
           <div class="card-small-info">
-            <div class="card-small-data">
-              <div class="info-main-num">
-                8.4
+            <div class="card-small-data" v-if="weatherInfo?.wind.gust">
+              <div class="info-main-num" >
+                {{weatherInfo.wind.gust}}
               </div>
               <div class="info-main-text">
                 m/s
@@ -70,7 +68,7 @@ import '@/assets/styles/highlights.scss'
             <div class="card-centered">
               <div class="info-main">
                 <div class="info-main-num">
-                  765
+                  {{Math.round(weatherInfo.main.pressure/1.33)}}
                 </div>
                 <div class="info-main-text">
                   mm
@@ -85,8 +83,8 @@ import '@/assets/styles/highlights.scss'
           </div>
           <div class="card-small-info">
             <div class="card-small-data">
-              <div class="info-main-num">
-                21
+              <div class="info-main-num" >
+                {{Math.round(weatherInfo.main.feels_like)}}
               </div>
               <div class="info-main-text">
                 °C
@@ -115,7 +113,7 @@ import '@/assets/styles/highlights.scss'
                   Sunrise
                 </div>
                 <div class="state-time">
-                  07:31:42
+                  {{ sunriseTime }}
                 </div>
               </div>
               <div class="state">
@@ -124,7 +122,7 @@ import '@/assets/styles/highlights.scss'
                   Sunset
                 </div>
                 <div class="state-time">
-                  18:34:19
+                  {{ sunsetTime }}
                 </div>
               </div>
             </div>
@@ -137,7 +135,7 @@ import '@/assets/styles/highlights.scss'
           <div class="card-small-info">
             <div class="card-small-data">
               <div class="info-main-num">
-                80
+                {{weatherInfo.clouds.all}}
               </div>
               <div class="info-main-text">
                 %
@@ -155,7 +153,21 @@ import '@/assets/styles/highlights.scss'
     </div>
   </div>
 </template>
-
+<script setup lang="ts">
+import '@/assets/styles/highlights.scss'
+import {computed} from "vue";
+const props = defineProps({
+  weatherInfo:{
+    type:[Object, null],
+    required:true
+  },
+})
+const timezone = computed(()=>props.weatherInfo?.timezone)
+console.log(timezone.value)
+const getTime =(sec:number)=> new Date(sec*1000).toLocaleTimeString('ru-RU',{timeZone:'Atlantic/Reykjavik'})
+const sunriseTime = computed(()=> getTime(props.weatherInfo?.sys.sunrise+timezone.value))
+const sunsetTime = computed(()=> getTime(props.weatherInfo?.sys.sunset+timezone.value))
+</script>
 <style scoped>
 
 </style>

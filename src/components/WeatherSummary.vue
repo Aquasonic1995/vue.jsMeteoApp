@@ -22,7 +22,7 @@
       {{ today }}
     </div>
   </div>
-  <div v-else style="margin-top:20px;font-size: 20px;">Oops<br>Something went wrong</div>
+  <div v-else style="margin-top:20px;font-size: 20px;">Please enter a valid city</div>
 </template>
 <script setup lang="ts">
 
